@@ -1,0 +1,7 @@
+:local pppCount 0; 
+:foreach i in=[/ppp active find] do={ :local iface [/ppp active get $i interface]; 
+:if ($iface = "ether1") do={ :set pppCount ($pppCount + 1) } };
+:if ($pppCount = 0) do={ /log warning "UYARI: ether1'de aktif kullanici yok";
+:local chatId "KENDİ CHAT ID'NİZ"; 
+:local token "BOT TOKENİNİZ"; 
+:local message "Uyari: ether1'de aktif kullanici yok."; /tool fetch url=("https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatId . "&text=" . $message) keep-result=no }
